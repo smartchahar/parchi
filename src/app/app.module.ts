@@ -12,14 +12,12 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthGuard } from './utils/guards/auth.guard';
 import { NavigationGuard } from './utils/guards/navigation.guard';
 import { HttpCallInterceptor } from './utils/intereptors/http-call.interceptor';
-import { HomeComponent } from './home/home.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent,
-    HomeComponent
+    LoginComponent
   ],
   imports: [
     BrowserModule,

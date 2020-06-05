@@ -9,7 +9,6 @@ const routes: Routes = [
     component: HomeComponent,
     canActivate: [NavigationGuard]
   }
-
 ];
 
 @NgModule({
