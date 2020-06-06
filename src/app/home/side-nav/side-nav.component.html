@@ -1,3 +1,54 @@
-<p>side-nav works!</p>
-
-SUmit
+<ng-sidebar-container>
+    <ng-sidebar [opened]="opened">
+        <mat-toolbar>
+            <div class="top-toolbar" style="background-color: #673ab7; height: 200px; align-items: flex-start;">
+                <span><i class="fa fa-arrow-left" style="margin-top: 12px;" (click)="toggleSideBar()"></i></span>
+                <mat-toolbar-row >My App</mat-toolbar-row>
+            </div>
+            <div class="top-toolbar" (click)="navigateTo()">
+                <span><i class="fa fa-paper-plane"></i></span>
+                <mat-toolbar-row >Matches</mat-toolbar-row>
+            </div>
+            <div class="top-toolbar" (click)="navigateTo()">
+                <span><i class="fa fa-address-book"></i></span>
+                <mat-toolbar-row >Accounts</mat-toolbar-row>
+            </div>
+            <div class="top-toolbar" (click)="navigateTo()">
+                <span><i class="fa fa-cogs"></i></span>
+                <mat-toolbar-row >Settings</mat-toolbar-row>
+            </div>
+            <div class="top-toolbar" (click)="logout()">
+                <span><i class="fa fa-sign-out"></i></span>
+                <mat-toolbar-row >Logout</mat-toolbar-row>
+            </div>
+        </mat-toolbar>     
+    </ng-sidebar>
+    <div ng-sidebar-content>
+        <mat-toolbar class="top-toolbar-container" color="primary">
+            <div class="top-toolbar">
+                <span><i class="fa fa-bars" (click)="toggleSideBar()"></i></span>
+                <mat-toolbar-row >Welcome to App</mat-toolbar-row>  
+            </div>
+        </mat-toolbar>
+        <!-- <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+              <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                  <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Link</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link disabled" href="#">Disabled</a>
+                </li>
+              </ul>
+            </div>
+          </nav> -->
+        <!-- <app-matches *ngIf="matches"></app-matches> -->
+        <router-outlet></router-outlet>
+    </div>
+</ng-sidebar-container>

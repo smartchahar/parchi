@@ -1,0 +1,32 @@
+ng-sidebar-container {
+    height: 100vh;
+}
+
+::ng-deep .ng-sidebar {
+    background-color: #f4f4f4;
+    width: 300px;
+}
+
+// ng-sidebar mat-toolbar-row {
+//     color: palegreen;
+// }
+
+.top-toolbar {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding-left: 17px;
+}
+
+.ng-sidebar-content {
+    display: flex;
+}
+
+.top-toolbar-container {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 1030;
+}

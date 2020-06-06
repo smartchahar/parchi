@@ -41,7 +41,7 @@ export class HttpCallInterceptor implements HttpInterceptor {
   private addToken(request: HttpRequest<any>, token: string) {
     return request.clone({
       setHeaders: {
-        X_AUTH_TOKEN: `Bearer ${token}`,
+        X_AUTH_TOKEN: token
       },
     });
   }

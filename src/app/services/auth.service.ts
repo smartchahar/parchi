@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AppHttpService } from './app-http.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Observable, of } from 'rxjs';
 import { catchError, tap, mapTo } from 'rxjs/operators';
 import { LocalStorageService } from './local-storage.service';
@@ -16,7 +16,8 @@ export class AuthService {
   constructor(
     private httpService: AppHttpService,
     private localStorageService: LocalStorageService,
-    private router: Router
+    private router: Router,
+    private route: ActivatedRoute
   ) {}
 
   login(user: { email: string; password: string }): Observable<any> {
@@ -31,8 +32,9 @@ export class AuthService {
   }
 
   logout() {
+    const body = { R_Token: this.getRefreshToken() }
     return this.httpService
-      .callPostApi('/logout', { R_Token: this.getRefreshToken() })
+      .callPostApi('/logout', body )
       .pipe(
         tap((tokens) => this.doLogoutUser()),
         mapTo(true),
@@ -66,7 +68,7 @@ export class AuthService {
   private doLoginUser(username: string, res) {
     this.LoggedUser = username;
     this.storeTokens(res);
-    this.router.navigate(['/home']);
+    this.router.navigate(['home'], {relativeTo: this.route});
   }
 
   private doLogoutUser() {
