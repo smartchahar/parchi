@@ -31,10 +31,10 @@ export class AuthService {
     );
   }
 
-  logout() {
-    const body = { R_Token: this.getRefreshToken() }
+  logout(): Observable<any> {
+    const body = JSON.stringify({ R_Token: this.getRefreshToken()});
     return this.httpService
-      .callPostApi('/logout', body )
+      .callPostApi('/users/logout', body )
       .pipe(
         tap((tokens) => this.doLogoutUser()),
         mapTo(true),
@@ -47,7 +47,7 @@ export class AuthService {
 
   refreshToken() {
     return this.httpService
-      .callPostApi('/refresh', {
+      .callPostApi('/users/refresh', {
         R_Token: this.getRefreshToken(),
       })
       .pipe(
@@ -74,6 +74,7 @@ export class AuthService {
   private doLogoutUser() {
     this.LoggedUser = null;
     this.removeTokens();
+    this.router.navigate(['/login']);
   }
 
   private storeTokens(res) {
@@ -85,11 +86,12 @@ export class AuthService {
     this.localStorageService.setData(this.X_AUTH_TOKEN, token);
   }
 
-  private getRefreshToken() {
-    this.localStorageService.getData(this.X_REFRESH_TOKEN);
+  getRefreshToken() {
+    return this.localStorageService.getData(this.X_REFRESH_TOKEN);
   }
 
   private removeTokens() {
     this.localStorageService.removeItem(this.X_AUTH_TOKEN);
+    this.localStorageService.removeItem(this.X_REFRESH_TOKEN);
   }
 }
